@@ -1,36 +1,31 @@
-# Web Full Stack Development
-
-## About the Project
-This repository contains projects, assignments, and practical exercises developed while learning full-stack web development. It demonstrates my progress in building responsive websites and web applications using frontend and backend technologies.
+# WDD430 Portfolio
+A responsive and accessible portfolio application built for the WDD430 — W01 Assignment: My First Next.js App.
 
 ## Technologies
-- HTML5
-- CSS3
-- JavaScript
-- Node.js
-- Express.js
-- Databases
-- Git and GitHub
+- Next.js (App Router)
+- TypeScript
+- React (Server Components exclusively)
+- Tailwind CSS
 
-## Project Goals
-- Develop responsive and user-friendly web applications.
-- Practice frontend and backend development.
-- Learn to work with databases and APIs.
-- Improve problem-solving and coding skills.
-- Apply web development concepts through practical projects.
+## Routes
+- `/` - Home page displaying projects
+- `/about` - About page with developer bio and skills
+- `/api/hello` - API endpoint returning JSON
 
-## Repository Structure
-Projects and assignments are organized into folders according to their topics and development stages.
+## Components
+- `Header` - Main site navigation
+- `ProjectCard` - Displays individual project details
+- `ProjectList` - Maps and renders multiple ProjectCards
+- `Footer` - Dynamic copyright information
+- `SkillCard` - Custom component used on the About page to list technical skills
 
-## Getting Started
-1. Clone this repository.
-2. Open the project folder you want to explore.
-3. Follow the instructions provided in that project's README, if available.
+## Running Locally
+To run this project on your local machine:
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Author
-**Guinter Santspirito Chissengue**
-
-GitHub: [guinterchissengue](https://github.com/guinterchissengue)
-
-## License
-This repository is intended for educational and learning purposes.
+## Deployment
+Vercel URL:(https://vercel.com/wdd-430-web-full-stack-development1/wdd430-portfolio/EQu2LPBHHq7WpaxVyDN9ucVnDAfp)
