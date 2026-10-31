@@ -36,7 +36,9 @@ export async function POST(request: Request) {
       !data.title ||
       !data.description ||
       !data.genre ||
-      !data.posterUrl
+      !data.posterUrl ||
+      data.releaseYear === undefined ||
+      data.duration === undefined
     ) {
       return NextResponse.json(
         { error: "Required fields are missing." },
@@ -46,12 +48,13 @@ export async function POST(request: Request) {
 
     const movie = await prisma.movie.create({
       data: {
-        title: data.title,
-        description: data.description,
-        genre: data.genre,
-        posterUrl: data.posterUrl,
+        title: String(data.title),
+        description: String(data.description),
+        genre: String(data.genre),
+        posterUrl: String(data.posterUrl),
         releaseYear: Number(data.releaseYear),
         duration: Number(data.duration),
+        featured: Boolean(data.featured),
       },
     });
 

@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { requireUser } from "@/lib/auth";
 import {
@@ -19,10 +18,16 @@ export async function GET() {
     const history = await getViewingHistory(userId);
 
     return NextResponse.json(history);
-  } catch {
+  } catch (error) {
+    const status =
+      error instanceof Error &&
+      error.message === "UNAUTHORIZED"
+        ? 401
+        : 500;
+
     return NextResponse.json(
       { error: "Unable to retrieve viewing history." },
-      { status: 500 }
+      { status }
     );
   }
 }
@@ -49,6 +54,16 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Invalid viewing data." },
         { status: 400 }
+      );
+    }
+
+    if (
+      error instanceof Error &&
+      error.message === "UNAUTHORIZED"
+    ) {
+      return NextResponse.json(
+        { error: "Please sign in." },
+        { status: 401 }
       );
     }
 

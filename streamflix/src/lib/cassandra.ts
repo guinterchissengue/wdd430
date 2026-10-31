@@ -2,9 +2,12 @@ import cassandra from "cassandra-driver";
 
 const contactPoints = (
   process.env.CASSANDRA_CONTACT_POINTS || "127.0.0.1"
-).split(",");
+)
+  .split(",")
+  .map((cp) => cp.trim())
+  .filter(Boolean);
 
-const client = new cassandra.Client({
+export const cassandraClient = new cassandra.Client({
   contactPoints,
   localDataCenter:
     process.env.CASSANDRA_LOCAL_DATACENTER || "datacenter1",
@@ -12,4 +15,4 @@ const client = new cassandra.Client({
     process.env.CASSANDRA_KEYSPACE || "streamflix",
 });
 
-export default client;
+export default cassandraClient;

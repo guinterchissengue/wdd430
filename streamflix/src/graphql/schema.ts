@@ -1,4 +1,3 @@
-
 import { createSchema } from "graphql-yoga";
 import { prisma } from "@/lib/prisma";
 
@@ -29,10 +28,7 @@ export const schema = createSchema({
           orderBy: { createdAt: "desc" },
         }),
 
-      movie: (
-        _: unknown,
-        args: { id: string }
-      ) =>
+      movie: (_: unknown, args: { id: string }) =>
         prisma.movie.findUnique({
           where: { id: args.id },
         }),

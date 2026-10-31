@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -27,7 +26,7 @@ export default function AddToWatchlist({
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error);
+        throw new Error(result.error || "Unable to add movie.");
       }
 
       setMessage("Added to your watchlist!");

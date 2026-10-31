@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
+import Navbar from "@/components/Navbar";
+import AddToWatchlist from "@/components/AddToWatchlist";
+import Footer from "@/components/Footer";
 
 export default async function MovieDetailsPage({
   params,
@@ -15,16 +18,21 @@ export default async function MovieDetailsPage({
   if (!movie) notFound();
 
   return (
-    <main className="movie-details">
-      <img src={movie.posterUrl} alt={movie.title} />
+    <>
+      <Navbar />
+      <main className="movie-details">
+        <img src={movie.posterUrl} alt={movie.title} />
 
-      <div>
-        <h1>{movie.title}</h1>
-        <p>{movie.description}</p>
-        <p>{movie.genre}</p>
-        <p>{movie.releaseYear}</p>
-        <p>{movie.duration} minutes</p>
-      </div>
-    </main>
+        <div>
+          <h1>{movie.title}</h1>
+          <p>{movie.description}</p>
+          <p><strong>Genre:</strong> {movie.genre}</p>
+          <p><strong>Release Year:</strong> {movie.releaseYear}</p>
+          <p><strong>Duration:</strong> {movie.duration} minutes</p>
+          <AddToWatchlist movieId={movie.id} />
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

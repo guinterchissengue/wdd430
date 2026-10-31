@@ -1,4 +1,3 @@
-
 import { auth } from "@clerk/nextjs/server";
 
 export async function requireUser() {
@@ -14,9 +13,7 @@ export async function requireUser() {
 export async function requireAdmin() {
   const userId = await requireUser();
 
-  const adminIds = (
-    process.env.ADMIN_USER_IDS || ""
-  )
+  const adminIds = (process.env.ADMIN_USER_IDS || "")
     .split(",")
     .map((id) => id.trim())
     .filter(Boolean);

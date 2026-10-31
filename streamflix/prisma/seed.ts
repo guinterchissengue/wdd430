@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -53,14 +52,13 @@ const movies = [
 
 async function main() {
   for (const movie of movies) {
+    const id = movie.title.toLowerCase().replaceAll(" ", "-");
     await prisma.movie.upsert({
-      where: {
-        id: movie.title.toLowerCase().replaceAll(" ", "-"),
-      },
+      where: { id },
       update: movie,
       create: {
         ...movie,
-        id: movie.title.toLowerCase().replaceAll(" ", "-"),
+        id,
       },
     });
   }

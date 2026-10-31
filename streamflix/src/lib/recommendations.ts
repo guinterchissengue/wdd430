@@ -24,12 +24,14 @@ export async function getRecommendations() {
   }
 
   try {
-    const response = await fetch(
-      process.env.RECOMMENDATIONS_API_URL!,
-      {
-        signal: AbortSignal.timeout(2000),
-      }
-    );
+    const apiUrl = process.env.RECOMMENDATIONS_API_URL;
+    if (!apiUrl) {
+      throw new Error("RECOMMENDATIONS_API_URL is not configured");
+    }
+
+    const response = await fetch(apiUrl, {
+      signal: AbortSignal.timeout(2000),
+    });
 
     if (!response.ok) {
       throw new Error("Recommendation service failed");

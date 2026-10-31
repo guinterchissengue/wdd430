@@ -1,4 +1,3 @@
-
 import { cassandraClient } from "@/lib/cassandra";
 
 export async function saveViewingHistory(
